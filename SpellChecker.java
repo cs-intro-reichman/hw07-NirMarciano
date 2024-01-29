@@ -54,7 +54,7 @@ public class SpellChecker {
 
 		if(min <= threshold) 
 			return dictionary[index];
-		else return null;
+		else return word;
 	}
 
 }
