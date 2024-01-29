@@ -8,7 +8,6 @@ public class SpellChecker {
 		String[] dictionary = readDictionary("dictionary.txt");
 		String correction = spellChecker(word, threshold, dictionary);
 		System.out.println(correction);
-		// System.out.println(levenshtein("uuuuuu", "word2"));
 	}
 
 	public static String tail(String str) {
@@ -16,13 +15,16 @@ public class SpellChecker {
 	}
 
 	public static int levenshtein(String word1, String word2) {
-		
-		if(word1.isEmpty()) return word2.length();
-		else if(word2.isEmpty()) return word1.length();
-		else if(word1.charAt(0) == word2.charAt(0))	
-			return levenshtein(tail(word1), tail(word2));
+
+		String a = word1.toLowerCase();
+		String b = word2.toLowerCase();
+
+		if(a.isEmpty()) return b.length();
+		else if(b.isEmpty()) return a.length();
+		else if(a.charAt(0) == b.charAt(0))	
+			return levenshtein(tail(a), tail(b));
 		else 
-			return (1 + Math.min(Math.min(levenshtein(tail(word1), word2), levenshtein(word1, tail(word2))), levenshtein(tail(word1), tail(word2))));
+			return (1 + Math.min(Math.min(levenshtein(tail(a), b), levenshtein(a, tail(b))), levenshtein(tail(a), tail(b))));
 
 	}
 
